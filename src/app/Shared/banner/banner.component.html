@@ -1,0 +1,16 @@
+<!-- Contenedor del carrusel -->
+<div id="carousel" class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth bg-blue-100 h-auto">
+    @for (banner of banners; track $index) {
+            <!-- Banner contenedor -->
+    <div class="w-full flex-shrink-0 snap-start flex gap-10 sm:gap-40 md:gap-80 xl:gap-200">
+        <!-- Parte izquierda -->
+        <div class="w-1/2 flex justify-start">
+            <img [src]="banner.imageLeftUrl" [alt]='"{{banner.title}} Izquierda"' class="w-full h-auto object-contain">
+        </div>
+        <!-- Parte derecha -->
+        <div class="w-1/2 flex ">
+            <img [src]="banner.imageRightUrl" [alt]='"{{banner.title}} Derecha"' class="w-full h-auto object-contain">
+        </div>
+    </div>
+    }
+</div>
