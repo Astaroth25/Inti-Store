@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, inject } from '@angular/core';
 import { BannerService } from '../../Services/banner.service';
-import { Banner } from '../../Interfaces/banner';
+import { BannerI } from '../../Interfaces/banner';
 
 @Component({
   selector: 'app-banner',
@@ -10,7 +10,7 @@ import { Banner } from '../../Interfaces/banner';
 })
 export class BannerComponent implements AfterViewInit {
   bannerService = inject(BannerService);
-  banners: Banner[] = [];
+  banners: BannerI[] = [];
   
   constructor(){
     this.banners= this.bannerService.getBanners();

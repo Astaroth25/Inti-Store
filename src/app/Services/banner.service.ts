@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Banner } from '../Interfaces/banner';
-import { filter } from 'rxjs';
+import { BannerI } from '../Interfaces/banner';
 
 @Injectable({
   providedIn: 'root',
@@ -8,21 +7,21 @@ import { filter } from 'rxjs';
 export class BannerService {
   //Definicion de los recursos del banner.
   //Solo img o svg de 400px x 400px
-  private banners: Banner[] = [
+  private banners: BannerI[] = [
     {
       bannerId: 1,
       title: 'Banner promocional',
-      imageRightUrl: 'Assets/rightBanner.svg',
-      imageLeftUrl: 'Assets/leftBanner.svg',
+      imageRightUrl: 'https://raw.githubusercontent.com/Astaroth25/Assets-Inti-Store/refs/heads/main/rightBanner.svg',
+      imageLeftUrl: 'https://raw.githubusercontent.com/Astaroth25/Assets-Inti-Store/refs/heads/main/leftBanner.svg',
     },
   ];
 
   //Métodos 
-  getBanners(): Banner[]{
+  getBanners(): BannerI[]{
     return this.banners;
   }
 
-  addBanner(banner:Banner):void{
+  addBanner(banner:BannerI):void{
     this.banners.push(banner);
   }
 
