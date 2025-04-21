@@ -1,1 +1,23 @@
-<p>contacts works!</p>
+<body background="https://img.freepik.com/premium-vector/e-commerce-shopping-symbols-set-simple-flat-colored-stickers-vector-illustration_333145-65.jpg?w=2000" class="bg-contain pt-4 pb-4">
+    <div class="flex flex-col text-center rounded-3xl text-white bg-black/90 p-10 m-10 w-auto items-center sm:w-100 sm:mx-auto">
+        <div>
+            <h2 class="text-xl font-bold">¿Cómo podemos ayudarte hoy?</h2>
+            <h3 class="text-sm font-light"> Escríbenos, estamos a un mensaje de distancia.</h3>
+        </div>
+
+        <form [formGroup]="contactForm" (ngSubmit)="submit()" class="flex flex-col w-full mt-10 gap-1 sm:w-70">
+            <label for="name" class="self-start font-bold">Nombre: </label>
+            <input type="text" name="name" id="name" class="border-1 rounded-full px-4" formControlName="name">
+            <label for="phone" class="self-start font-bold">Celular: </label>
+            <input type="tel" name="phone" id="phone" class="border-1 rounded-full px-4 " formControlName="phone">
+            <label for="email" class="self-start font-bold">Email: </label>
+            <input type="email" name="email" id="email" class="border-1 rounded-full px-4" formControlName="email">
+            <label for="message" class="self-start font-bold">Mensaje:</label>
+            <textarea name="message" id="message" rows="4" maxlength="100" class="border-1 rounded-4xl px-4"
+                formControlName="message"></textarea>
+            <br>
+            <app-button [classes]="'bg-sky-200 w-20 m-auto text-black'">Enviar</app-button>
+        </form>
+
+    </div>
+</body>
