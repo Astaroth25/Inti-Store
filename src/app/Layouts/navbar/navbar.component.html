@@ -3,13 +3,13 @@
     <div class="flex justify-center items-center m-4 max-sm:justify-start"><img src="../../../Assets/Inti Store.svg" alt="Logo"
             class="size-24 max-w-full"><span class="text-xl font-bold ml-1">Inti
             Store</span>
-        <button class="ml-auto sm:hidden" (click)="menuClick()"><img src="../../../Assets/menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Menú" class="w-12 "></button>
+        <button class="ml-auto sm:hidden" (click)="menuClick()"><img src="../../../Assets/menu.svg" alt="Menú" class="w-12 "></button>
     </div>
     <!-- Botones de navegación -->
     <div
         class="flex flex-col gap-4 m-2 justify-center items-center sm:flex-row md:justify-between md:mr-4 lg:m-4 lg:ml-14 lg:mr-5 sm:flex" [class.hidden]="menuOpen">
         <!-- Botón de login -->
-        <app-button [classes]="'hover:bg-yellow-200'" class="sm:order-last md:ml-auto">Login</app-button>
+        <app-button [classes]="'hover:bg-yellow-200'" class="sm:order-last md:ml-auto" [routerLink]="['/login']">Login</app-button>
         <app-button [classes]="'hover:bg-red-200'" [routerLink]="['/home']">Inicio</app-button>
         <app-button [classes]="'hover:bg-orange-200'" [routerLink]="['/products']">Productos</app-button>
         <app-button [classes]="'hover:bg-amber-200'" [routerLink]="['/contacts']">Contactos</app-button>

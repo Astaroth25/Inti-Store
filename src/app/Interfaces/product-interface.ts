@@ -1,8 +1,10 @@
 export interface ProductI {
-    id:number;
-    tittle:string;
-    price: number;
-    description: string;
-    highlight: boolean;
-    score:number;
+  id: string;
+  name: string;
+  brand: string;
+  price: string;
+  description: string;
+  link: string;
+  rate: number;
+  stock: number;
 }

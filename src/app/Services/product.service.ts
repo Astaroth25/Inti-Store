@@ -1,27 +1,18 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ProductI } from '../Interfaces/product-interface';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ProductService {
-  private product: ProductI[] = [
-    {
-      id: 0,
-      tittle: 'Vans Classics',
-      price: 89.00,
-      description: 'Zapatos de skate con plantilla conficush.',
-      highlight: false,
-      score: 0
-    }
-  ];
+  private baseURL:string = 'http://localhost:3000/product';
+  private http = inject(HttpClient)
 
-  getProducts(): ProductI[] {
-    return this.product;
+  getAllProducts():Observable<ProductI[]>{
+    return this.http.get<ProductI[]>(this.baseURL+'/all');
   }
 
-  getOneProduct(productId: number): ProductI | string {
-    let productFind = this.product.find((item) => item.id === productId);
-    return productFind ? productFind: "No se encontró ningún elemento.";
-  }
+  constructor() { }
 }

@@ -1,0 +1,7 @@
+<form [formGroup]="loginForm">
+    <label for="username" class="self-start font-bold">Username: </label>
+    <input type="text" name="username" id="username" class="border-1 rounded-full px-4" formControlName="username">
+    <label for="password" class="self-start font-bold">Password: </label>
+    <input type="password" name="password" id="password" class="border-1 rounded-full px-4" formControlName="password">
+    <app-button [classes]="'bg-sky-200 m-auto text-black'">Enviar</app-button>
+</form>
