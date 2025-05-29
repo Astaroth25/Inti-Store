@@ -12,7 +12,7 @@ export class BannerService {
       bannerId: 1,
       title: 'Banner promocional',
       imageRightUrl: 'https://raw.githubusercontent.com/Astaroth25/Assets-Inti-Store/refs/heads/main/rightBanner.webp',
-      imageLeftUrl: 'https://raw.githubusercontent.com/Astaroth25/Assets-Inti-Store/refs/heads/main/leftBanner.svg',
+      imageLeftUrl: 'https://raw.githubusercontent.com/Astaroth25/Assets-Inti-Store/refs/heads/main/leftBanner.webp',
     },
   ];
 

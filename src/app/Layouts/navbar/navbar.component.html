@@ -1,23 +1,27 @@
-<div class="sticky top-0 grid mb-7 md:grid-cols-[auto_1fr] bg-gray-50 shadow-lg">
+<div class="sticky top-0 flex flex-col bg-gray-50 shadow-lg lg:flex-row">
     <!-- Logo del negocio -->
-    <div class="flex justify-center items-center m-4 max-sm:justify-start"><img src="../../../Assets/Inti Store.svg" alt="Logo"
-            class="size-24 max-w-full"><span class="text-xl font-bold ml-1">Inti
+    <div class="flex justify-center items-center m-4 max-sm:justify-start"><img
+            src="https://raw.githubusercontent.com/Astaroth25/Assets-Inti-Store/refs/heads/main/Inti%20Store.svg"
+            alt="Logo" class="flex size-24"><span class="text-xl font-bold ml-1 xl:text-2xl">Inti
             Store</span>
-        <button class="ml-auto sm:hidden" (click)="menuClick()"><img src="../../../Assets/menu.svg" alt="Menú" class="w-12 "></button>
+        <button class="ml-auto sm:hidden" (click)="menuClick()">
+            <svg width="48" height="48">
+                <use xlink:href="../../../Assets/sprite.svg#menu"></use>
+            </svg>
+        </button>
     </div>
     <!-- Botones de navegación -->
-    <div
-        class="flex flex-col gap-4 m-2 justify-center items-center sm:flex-row md:justify-between md:mr-4 lg:m-4 lg:ml-14 lg:mr-5 sm:flex" [class.hidden]="menuOpen">
-        <!-- Botón de login -->
-        <app-button [classes]="'hover:bg-yellow-200'" class="sm:order-last md:ml-auto" [routerLink]="['/login']">Login</app-button>
+    <div class="flex flex-col grow gap-2 items-center justify-center sm:flex-row" [class.hidden]="!((menuOpen$ | async) || menuToggle)">
+        <app-button [classes]="'hover:bg-yellow-200'" class="sm:order-last lg:ml-auto lg:mr-4"
+            [routerLink]="['/login']">Login</app-button>
         <app-button [classes]="'hover:bg-red-200'" [routerLink]="['/home']">Inicio</app-button>
         <app-button [classes]="'hover:bg-orange-200'" [routerLink]="['/products']">Productos</app-button>
         <app-button [classes]="'hover:bg-amber-200'" [routerLink]="['/contacts']">Contactos</app-button>
-
-        <!-- Barra de búsqueda -->
-        <div class="order-first sm:order-4">
+        <!--Barra de búsqueda -->
+        <div class="relative order-first sm:order-4">
             <input type="text" placeholder="Buscar"
-                class="rounded-full text-center px-4 border-2 border-gray-200 focus:text-start focus:placeholder:text-transparent outline-none sm:w-40 lg:w-auto">
+                class="rounded-full text-center px-4 border-2 border-gray-200 focus:placeholder:text-transparent outline-none sm:w-40 lg:w-auto">
+                <svg width="20" height="20" class="absolute top-1/2 -translate-y-1/2 right-4"><use xlink:href="../../../Assets/sprite.svg#search"></use></svg>
         </div>
     </div>
 </div>
