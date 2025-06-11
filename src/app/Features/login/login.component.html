@@ -1,7 +1,22 @@
-<form [formGroup]="loginForm">
-    <label for="username" class="self-start font-bold">Username: </label>
-    <input type="text" name="username" id="username" class="border-1 rounded-full px-4" formControlName="username">
-    <label for="password" class="self-start font-bold">Password: </label>
-    <input type="password" name="password" id="password" class="border-1 rounded-full px-4" formControlName="password">
-    <app-button [classes]="'bg-sky-200 m-auto text-black'">Enviar</app-button>
-</form>
+<div class="flex flex-col justify-center items-center h-160 md:flex-row md:gap-10">
+    <div class="text-center">
+        @for (item of shopNameLetters; track $index) {
+        <span
+            [className]="item.color + ' text-6xl font-bold [text-fill-color:transparent] [-webkit-text-stroke:1px_black]'">{{item.letter}}</span>
+        }
+        <p>Inicia sesión y encuentra eso que te ilumina.</p>
+    </div>
+    <div class="flex flex-col text-center rounded-3xl text-black bg-white/90 p-10 m-10 items-center w-auto max-w-100">
+
+        <form [formGroup]="loginForm" class="flex flex-col w-full gap-1">
+            <label for="username" class="self-start font-bold">Username: </label>
+            <input type="text" name="username" id="username" class="border-1 rounded-full px-4"
+                formControlName="username">
+            <label for="password" class="self-start font-bold">Password: </label>
+            <input type="password" name="password" id="password" class="border-1 rounded-full px-4"
+                formControlName="password">
+            <br>
+            <app-button [classes]="'bg-sky-200 w-20 m-auto text-black'">Enviar</app-button>
+        </form>
+    </div>
+</div>

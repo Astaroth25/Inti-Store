@@ -8,7 +8,7 @@ import { CategoryI } from '../Interfaces/category';
   providedIn: 'root'
 })
 export class ProductService {
-  private baseURL: string = 'http://localhost:3000/product';
+  private baseURL: string = 'https://intistore-backend.vercel.app/product';
   private http = inject(HttpClient)
 
   getAllProducts(): Observable<ProductI[]> {
