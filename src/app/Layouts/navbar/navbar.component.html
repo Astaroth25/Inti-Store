@@ -19,9 +19,8 @@
         <app-button [classes]="'hover:bg-amber-200'" [routerLink]="['/contacts']">Contactos</app-button>
         <!--Barra de búsqueda -->
         <div class="relative order-first sm:order-4">
-            <input type="text" placeholder="Buscar"
-                class="rounded-full text-center px-4 border-2 border-gray-200 focus:placeholder:text-transparent outline-none sm:w-40 lg:w-auto">
-                <svg width="20" height="20" class="absolute top-1/2 -translate-y-1/2 right-4"><use xlink:href="../../../Assets/sprite.svg#search"></use></svg>
+            <input type="text" placeholder="Buscar" [formControl]="searchBar" class="rounded-full text-center px-4 border-2 border-gray-200 focus:placeholder:text-transparent outline-none sm:w-40 lg:w-auto">
+                <svg width="20" height="20" class="absolute top-1/2 -translate-y-1/2 right-4" (click)="search()"><use xlink:href="../../../Assets/sprite.svg#search"></use></svg>
         </div>
     </div>
 </div>

@@ -22,7 +22,11 @@ export class ProductService {
   getProductsByCategory(category: string): Observable<ProductI[]> {
     let params = new HttpParams();
     params = params.append('category', category);
-    return this.http.get<ProductI[]>(this.baseURL + '/all', { params: params })
+    return this.http.get<ProductI[]>(this.baseURL + '/all', { params: params });
+  }
+
+  getProductsByName(name: string): Observable<ProductI[]>{
+    return this.http.get<ProductI[]>(this.baseURL + `/${name}`);
   }
 
   getAllCategories(): Observable<CategoryI[]> {
