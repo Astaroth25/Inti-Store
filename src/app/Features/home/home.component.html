@@ -1,1 +1,23 @@
 <app-banner />
+<div class="flex flex-col bg-violet-200 items-center gap-2 my-4">
+    <h1 class="text-2xl font-bold">Descubre lo que tenemos para ti</h1>
+    <div class="flex items-center justify-center gap-2 flex-wrap mb-4">
+        @if ((products$ | async); as products) {
+        @if (products.length > 0) {
+        @for (product of products.slice(0,3); track product.id) {
+        <app-product-item [routerLink]="['/products', product.id]">
+            <div image><img src="{{product.link}}" alt="{{product.name}}" class="w-full h-45 object-fill">
+            </div>
+            <div title>
+                <p class="truncate">{{product.name}}</p>
+            </div>
+            <div price>{{product.price}}</div>
+        </app-product-item>
+        }
+        }
+        @else {
+        <p>No hay productos destacados para mostrar. </p>
+        }
+        }
+    </div>
+</div>

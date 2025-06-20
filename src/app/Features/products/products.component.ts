@@ -12,13 +12,13 @@ import { RouterModule } from '@angular/router';
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
   categories: string[] = ['Deportes', 'Electrónica', 'Hobby', 'Moda', 'Tecnología'];
   private productService = inject(ProductService);
   public products$!: Observable<ProductI[]>;
 
-  ngOnInit(): void {
-    this.productService.getProducts().subscribe();
+  constructor(){
+    this.productService.products$.subscribe();
     this.products$ = this.productService.products$;
   }
 

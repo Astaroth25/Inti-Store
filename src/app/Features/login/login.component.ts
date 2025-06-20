@@ -31,9 +31,10 @@ export class LoginComponent {
         next: () => {
           this.router.navigate(['/home']);
         },
-        error: (error) => {
-          console.error(error);
-          // this.router.navigate(['/home']);
+        error: () => {
+          this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+            this.router.navigate(['/login'])
+          });
         }
       });
     }

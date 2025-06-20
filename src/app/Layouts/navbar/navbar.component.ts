@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ButtonComponent } from "../../Shared/button/button.component";
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit {
   breakpointObserver = inject(BreakpointObserver);
   private productService = inject(ProductService);
   private authService = inject(AuthService);
+  private router = inject(Router)
   currentUser$!: Observable<UserLoginResponse | null>;
   productData: ProductI[] = [];
 
@@ -44,10 +45,14 @@ export class NavbarComponent implements OnInit {
 
   searchByName(): void {
     const searchTerm = this.searchBar.value!.trim();
-    this.productService.getProducts({ name: searchTerm }).subscribe();
+    if (searchTerm) {
+      this.productService.getProducts({ name: searchTerm }).subscribe();
+      this.router.navigate(['/products']);
+    };
+    this.searchBar.reset();
   }
 
-  logout():void{
+  logout(): void {
     this.authService.logout().subscribe({
       next: (response) => {
         console.log(response);

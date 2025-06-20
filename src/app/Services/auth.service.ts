@@ -40,8 +40,10 @@ export class AuthService {
   login(credencials: Credentials): Observable<UserLoginResponse> {
     return this.userService.login(credencials).pipe(
       tap((response: UserLoginResponse) => {
-        this._currentUser.next(response);
-        this._authStatusChecked.next(true);
+        if (response && !response.message) {
+          this._currentUser.next(response);
+          this._authStatusChecked.next(true);
+        }
       }),
       catchError(error => {
         this._currentUser.next(null);
