@@ -1,0 +1,6 @@
+    <div class="text-center">
+        @for (item of shopNameLetters; track $index) {
+        <span
+            [class]="classes() + ` ${item.color } font-bold [text-fill-color:transparent] [-webkit-text-stroke:1px_black]`">{{item.letter}}</span>
+        }
+    </div>

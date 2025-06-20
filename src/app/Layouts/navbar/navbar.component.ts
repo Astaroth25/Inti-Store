@@ -1,13 +1,15 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ButtonComponent } from "../../Shared/button/button.component";
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { map, Observable } from 'rxjs';
-import { ProductI } from '../../Interfaces/product-interface';
+import { ProductI } from '../../Interfaces/product';
 import { ProductService } from '../../Services/product.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../../Services/auth.service';
+import { UserLoginResponse } from '../../Interfaces/userLoginResponse';
 
 @Component({
   selector: 'app-navbar',
@@ -15,16 +17,23 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   menuToggle: boolean = false;
   breakpointObserver = inject(BreakpointObserver);
   private productService = inject(ProductService);
+  private authService = inject(AuthService);
+  currentUser$!: Observable<UserLoginResponse | null>;
   productData: ProductI[] = [];
 
   searchBar = new FormControl('');
 
   menuOpen$: Observable<boolean> = this.breakpointObserver.observe(['(min-width: 640px)'])
     .pipe(map(state => state.matches));
+
+  ngOnInit(): void {
+    this.authService.currentUser$.subscribe();
+    this.currentUser$ = this.authService.currentUser$;
+  }
 
   menuClick() {
     this.menuOpen$.subscribe(isSm => {
@@ -33,13 +42,19 @@ export class NavbarComponent {
     }).unsubscribe();
   }
 
-  search(): void {
-    this.productService.getProductsByName(this.searchBar.value!).subscribe({
-      next: data => {
-        this.productData = data;
+  searchByName(): void {
+    const searchTerm = this.searchBar.value!.trim();
+    this.productService.getProducts({ name: searchTerm }).subscribe();
+  }
+
+  logout():void{
+    this.authService.logout().subscribe({
+      next: (response) => {
+        console.log(response);
+        console.log(this.currentUser$);
       },
-      error: error => {
-        console.log(error);
+      error: (error) => {
+        console.error(error)
       }
     });
   }

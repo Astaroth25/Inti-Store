@@ -1,22 +1,20 @@
-<div class="flex flex-col justify-center items-center h-160 md:flex-row md:gap-10">
+<div class="flex flex-col justify-center items-center h-full m-10 md:flex-row md:h-160 md:gap-10 md:mb-0 md:mt-0">
     <div class="text-center">
-        @for (item of shopNameLetters; track $index) {
-        <span
-            [className]="item.color + ' text-6xl font-bold [text-fill-color:transparent] [-webkit-text-stroke:1px_black]'">{{item.letter}}</span>
-        }
-        <p>Inicia sesión y encuentra eso que te ilumina.</p>
+       <app-colorful-title classes="text-6xl"/>
+        <p class="font-light text-lg">Inicia sesión y encuentra eso que te ilumina.</p>
     </div>
-    <div class="flex flex-col text-center rounded-3xl text-black bg-white/90 p-10 m-10 items-center w-auto max-w-100">
+    <div
+        class="flex flex-col text-center rounded-3xl text-black bg-white p-10 m-10 items-center w-auto max-w-90 relative -z-0">
 
-        <form [formGroup]="loginForm" class="flex flex-col w-full gap-1">
-            <label for="username" class="self-start font-bold">Username: </label>
-            <input type="text" name="username" id="username" class="border-1 rounded-full px-4"
+        <form [formGroup]="loginForm" class="flex flex-col w-full gap-2">
+            <input type="text" placeholder="Username" name="username" id="username" class="border-1 rounded-full px-4 h-10 placeholder-neutral-500 border-neutral-500"
                 formControlName="username">
-            <label for="password" class="self-start font-bold">Password: </label>
-            <input type="password" name="password" id="password" class="border-1 rounded-full px-4"
+            <input type="password" placeholder="Password" name="password" id="password" class="border-1 rounded-full px-4 h-10 placeholder-neutral-500 border-neutral-500"
                 formControlName="password">
             <br>
-            <app-button [classes]="'bg-sky-200 w-20 m-auto text-black'">Enviar</app-button>
+            <app-button [classes]="'bg-sky-200 w-20 m-auto text-black'" (click)="login()">Enviar</app-button>
         </form>
+        <p class="absolute text-base font-light -bottom-8">No tienes una cuenta? <a class="hover:underline cursor-pointer font-normal" [routerLink]="['/register']">Regístrate</a></p>
     </div>
+
 </div>

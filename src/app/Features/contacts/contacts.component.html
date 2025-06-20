@@ -1,21 +1,29 @@
-<div class="flex flex-col justify-center items-center h-160 md:flex-row md:gap-10">
+<div class="flex flex-col justify-center items-center h-full m-10 md:flex-row md:h-160 md:gap-14 md:mb-0 md:mt-0">
     <div class="flex flex-col items-center text-center">
         <img src="Assets/support.gif" alt="Soporte Gif" class="w-40">
-            <h2 class="text-xl font-bold">¿Cómo podemos ayudarte hoy?</h2>
-            <h3 class="text-sm font-light"> Escríbenos, estamos a un mensaje de distancia.</h3>
+        <h2 class="text-2xl font-bold">¿Cómo podemos ayudarte hoy?</h2>
+        <h3 class="text-lg font-light"> Escríbenos, estamos a un mensaje de distancia.</h3>
     </div>
 
-    <div class="flex flex-col text-center rounded-3xl text-black bg-white/90 p-10 m-10 items-center w-auto max-w-100">
+    <div class="flex flex-col text-center rounded-3xl text-black bg-white p-10 items-center w-auto max-w-90">
 
-        <form [formGroup]="contactForm" (ngSubmit)="submit()" class="flex flex-col w-full gap-1 sm:w-70">
-            <label for="name" class="self-start font-bold">Nombre: </label>
-            <input type="text" name="name" id="name" class="border-1 rounded-full px-4" formControlName="name">
-            <label for="phone" class="self-start font-bold">Celular: </label>
-            <input type="tel" name="phone" id="phone" class="border-1 rounded-full px-4 " formControlName="phone">
-            <label for="email" class="self-start font-bold">Email: </label>
-            <input type="email" name="email" id="email" class="border-1 rounded-full px-4" formControlName="email">
-            <label for="message" class="self-start font-bold">Mensaje:</label>
-            <textarea name="message" id="message" rows="4" maxlength="100" class="border-1 rounded-4xl px-4"
+        <form [formGroup]="contactForm" (ngSubmit)="submit()" class="flex flex-col w-full gap-2">
+            <div class="flex gap-2">
+                <input type="text" placeholder="Nombre" name="name" id="name"
+                    class="border-1 rounded-full px-4 h-10 w-1/2 placeholder-neutral-500 border-neutral-500"
+                    formControlName="name">
+
+                <input type="tel" placeholder="Celular" name="phone" id="phone"
+                    class="border-1 rounded-full px-4 h-10 w-1/2 placeholder-neutral-500 border-neutral-500"
+                    formControlName="phone">
+            </div>
+
+            <input type="email" placeholder="Email" name="email" id="email"
+                class="border-1 rounded-full px-4 h-10 placeholder-neutral-500 border-neutral-500"
+                formControlName="email">
+
+            <textarea name="message" placeholder="Mensaje" id="message" rows="4" maxlength="100"
+                class="border-1 rounded-4xl px-4 placeholder-neutral-500 border-neutral-500 resize-none"
                 formControlName="message"></textarea>
             <br>
             <app-button [classes]="'bg-sky-200 w-20 m-auto text-black'">Enviar</app-button>

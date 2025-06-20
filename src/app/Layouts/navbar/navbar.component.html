@@ -1,8 +1,8 @@
-<div class="sticky top-0 flex flex-col bg-gray-50 shadow-lg lg:flex-row">
+<div class="flex flex-col bg-white shadow-lg lg:flex-row">
     <!-- Logo del negocio -->
     <div class="flex justify-center items-center m-4 max-sm:justify-start"><img
             src="https://raw.githubusercontent.com/Astaroth25/Assets-Inti-Store/refs/heads/main/Inti%20Store.svg"
-            alt="Logo" class="flex size-24"><span class="text-xl font-bold ml-1 xl:text-2xl">Inti
+            alt="Logo" class="flex size-24"><span class="text-xl font-bold ml-1 cursor-default xl:text-2xl">Inti
             Store</span>
         <button class="ml-auto sm:hidden" (click)="menuClick()">
             <svg width="48" height="48">
@@ -11,16 +11,34 @@
         </button>
     </div>
     <!-- Botones de navegación -->
-    <div class="flex flex-col grow gap-2 items-center justify-center sm:flex-row" [class.hidden]="!((menuOpen$ | async) || menuToggle)">
+    <div class="flex flex-col grow gap-2 items-center justify-center sm:flex-row"
+        [class.hidden]="!((menuOpen$ | async) || menuToggle)">
+        @if ((currentUser$ | async); as user) {
+        <div class="flex items-center sm:order-last lg:ml-auto">
+            <p class="p-3 sm:order-5 lg:p-4 cursor-default">Hola {{user.username}}</p>
+            <app-button [classes]="'hover:bg-yellow-200'" class="sm:order-last lg:mr-4" (click)="logout()"
+                [routerLink]="['/home']">Logout</app-button>
+        </div>
+        }
+        @else {
         <app-button [classes]="'hover:bg-yellow-200'" class="sm:order-last lg:ml-auto lg:mr-4"
             [routerLink]="['/login']">Login</app-button>
+        }
+
         <app-button [classes]="'hover:bg-red-200'" [routerLink]="['/home']">Inicio</app-button>
+
         <app-button [classes]="'hover:bg-orange-200'" [routerLink]="['/products']">Productos</app-button>
+
         <app-button [classes]="'hover:bg-amber-200'" [routerLink]="['/contacts']">Contactos</app-button>
         <!--Barra de búsqueda -->
         <div class="relative order-first sm:order-4">
-            <input type="text" placeholder="Buscar" [formControl]="searchBar" class="rounded-full text-center px-4 border-2 border-gray-200 focus:placeholder:text-transparent outline-none sm:w-40 lg:w-auto">
-                <svg width="20" height="20" class="absolute top-1/2 -translate-y-1/2 right-4" (click)="search()"><use xlink:href="../../../Assets/sprite.svg#search"></use></svg>
+            <input type="text" placeholder="Buscar" [formControl]="searchBar"
+                class="rounded-full text-center px-4 border-1 border-neutral-500 placeholder-neutral-500 outline-none focus:placeholder-transparent sm:w-40 lg:w-auto">
+            <svg width="20" height="20"
+                class="absolute top-1/2 -translate-y-1/2 right-4 fill-neutral-400 hover:fill-neutral-600"
+                (click)="searchByName()">
+                <use xlink:href="Assets/sprite.svg#search"></use>
+            </svg>
         </div>
     </div>
 </div>

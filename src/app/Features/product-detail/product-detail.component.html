@@ -1,0 +1,24 @@
+<body class="p-5">
+    @if (product) {
+    <div class="flex flex-col justify-center gap-10 bg-neutral-200 p-5 sm:flex-row">
+        <div class=" flex w-60 h-72 self-center sm:w-80 sm:h-96 justify-center items-center">
+            <img src="{{product.link}}" alt="{{product.name}}" class="object-fill">
+        </div>
+
+        <div class="flex flex-col sm:w-2/3 ">
+            <h1 class="font-bold text-2xl">{{product.name}}</h1>
+            <p>{{product.price | currency }}</p>
+            <div class="flex space-x-2 items-center">
+                <p>{{product.rate | number }} / 5</p>
+                <svg width="16" height="16" class=" fill-yellow-300 stroke-black">
+                    <use xlink:href="Assets/sprite.svg#star"></use>
+                </svg>
+            </div>
+            <h1 class="mt-2 font-semibold text-lg">Descripción:</h1>
+            <h2>{{product.description}}</h2>
+        </div>
+
+    </div>
+    }
+    @else { <p>Cargando ...</p> }
+</body>

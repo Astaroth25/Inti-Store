@@ -4,17 +4,19 @@
         class="flex flex-wrap justify-center mx-4 text-center border-b-1 border-gray-200 sm:text-justify sm:border-b-0">
         <ol class="list-none">
             <li class="font-bold mb-2">Categorías</li>
-            @for (category of categories; track $index) {
-            <p class="hover:underline cursor-pointer" (click)="getProductsByCategory(category.name)">{{category.name}}
-            </p>
+            @for (item of categories; track $index) {
+            <li class="hover:underline cursor-pointer" (click)="searchByCategory(item)">{{item}}</li>
             }
         </ol>
     </div>
+
     <!-- Contenedor de productos -->
     <div class="flex flex-wrap gap-2 mt-5 px-4 justify-center  border-gray-200 sm:mt-0 sm:border-l-1 sm:gap-3">
-        @for (product of productData; track product.id) {
-        <app-product-item>
-            <div image><img src="{{product.link}}" alt="{{product.name}}" class="w-full h-45 object-fit">
+        @if ((products$ | async); as products) {
+        @if (products.length > 0) {
+        @for (product of products; track product.id) {
+        <app-product-item [routerLink]="['/products', product.id]">
+            <div image><img src="{{product.link}}" alt="{{product.name}}" class="w-full h-45 object-fill">
             </div>
             <div title>
                 <p class="truncate">{{product.name}}</p>
@@ -22,6 +24,10 @@
             <div price>{{product.price}}</div>
         </app-product-item>
         }
-
+        }
+        @else {
+        <p>No hay productos para mostrar. </p>
+        }
+        }
     </div>
 </div>

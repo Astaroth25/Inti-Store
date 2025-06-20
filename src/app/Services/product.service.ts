@@ -1,35 +1,37 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ProductI } from '../Interfaces/product-interface';
-import { CategoryI } from '../Interfaces/category';
+import { Observable, BehaviorSubject, tap, catchError, of } from 'rxjs';
+import { ProductI } from '../Interfaces/product';
+import { SearchParams } from '../Interfaces/searchParams';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private baseURL: string = 'https://intistore-backend.vercel.app/product';
+  private baseURL: string = 'https://intistore-backend.vercel.app/product/';
   private http = inject(HttpClient)
 
-  getAllProducts(): Observable<ProductI[]> {
-    return this.http.get<ProductI[]>(this.baseURL + '/all');
+  private _products = new BehaviorSubject<ProductI[]>([]);
+  public products$ = this._products.asObservable();
+
+  getProducts(searchParams: SearchParams = {}): Observable<ProductI[]> {
+    let params = new HttpParams();
+    if (searchParams.category) {
+      params = params.append('category', searchParams.category);
+    }
+    if (searchParams.name) {
+      params = params.append('name', searchParams.name);
+    }
+    return this.http.get<ProductI[]>(this.baseURL, { params: params }).pipe(
+      tap(data => this._products.next(data)), 
+    catchError(error => {
+      console.error('Error Obtaining Products: ', error);
+      this._products.next([]);
+      return of ([]);
+    }));
   }
 
   getOneProduct(id: string): Observable<ProductI> {
-    return this.http.get<ProductI>(this.baseURL + `/${id}`);
-  }
-
-  getProductsByCategory(category: string): Observable<ProductI[]> {
-    let params = new HttpParams();
-    params = params.append('category', category);
-    return this.http.get<ProductI[]>(this.baseURL + '/all', { params: params });
-  }
-
-  getProductsByName(name: string): Observable<ProductI[]>{
-    return this.http.get<ProductI[]>(this.baseURL + `/${name}`);
-  }
-
-  getAllCategories(): Observable<CategoryI[]> {
-    return this.http.get<CategoryI[]>(this.baseURL + '/categories');
+    return this.http.get<ProductI>(this.baseURL + `${id}`);
   }
 }

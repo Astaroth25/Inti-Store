@@ -1,38 +1,43 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from '../../Shared/button/button.component';
-
-interface ShopLetter {
-  letter: string;
-  color: string;
-}
+import { UserService } from '../../Services/user.service';
+import { Router, RouterModule } from '@angular/router';
+import { ColorfulTitleComponent } from "../../Shared/colorful-title/colorful-title.component";
+import { AuthService } from '../../Services/auth.service';
+import { UserLoginResponse } from '../../Interfaces/userLoginResponse';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, ButtonComponent],
+  imports: [ReactiveFormsModule, ButtonComponent, RouterModule, ColorfulTitleComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 
-export class LoginComponent implements OnInit {
-  shopName: string = 'Inti Store';
-  colors: string[] = ['text-red-500', 'text-orange-500', 'text-amber-500', 'text-lime-500', 'text-emerald-500', 'text-cyan-500', 'text-indigo-500', 'text-violet-500', 'text-purple-500', 'text-fuchsia-500', 'text-pink-500', 'text-rose-500'];
-  shopNameLetters: ShopLetter[] = [];
+export class LoginComponent {
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
   loginForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl('')
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required])
   });
 
-  private getColor(): string {
-    return this.colors[Math.floor(Math.random() * this.colors.length)];
-  }
+  login(): void {
+    if (this.loginForm.valid) {
+      const username = this.loginForm.value.username!;
+      const password = this.loginForm.value.password!;
+      this.authService.login({ username, password }).subscribe({
+        next: () => {
+          this.router.navigate(['/home']);
+        },
+        error: (error) => {
+          console.error(error);
+          // this.router.navigate(['/home']);
+        }
+      });
+    }
 
-  ngOnInit() {
-    this.shopNameLetters = this.shopName.split('').map(letter => ({
-      letter: letter,
-      color: this.getColor()
-    }));
   }
 }
 

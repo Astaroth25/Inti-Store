@@ -1,10 +1,16 @@
-<div class="text-base xl:text-xl">
+<div class="flex flex-col min-h-screen">
     <!-- Componente de barra de navegación -->
-    <app-navbar></app-navbar>
+    <header class="sticky top-0 z-10">
+        <app-navbar></app-navbar>
+    </header>
 
     <!-- Directiva para single-page apps-->
-    <router-outlet />
+    <main class="flex-grow">
+        <router-outlet />
+    </main>
 
     <!-- Componente de pie de página -->
-    <app-footer></app-footer>
+    <footer>
+        <app-footer></app-footer>
+    </footer>
 </div>
