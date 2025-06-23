@@ -18,6 +18,5 @@ export class AppComponent {
 
   constructor(){
     this.authService.checkAuthStatus().subscribe();
-    this.productService.getProducts().subscribe();
   }
 }

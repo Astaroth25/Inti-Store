@@ -11,25 +11,25 @@
         </button>
     </div>
     <!-- Botones de navegación -->
-    <div class="flex flex-col mb-4 grow gap-2 items-center justify-center sm:flex-row lg:mb-0"
+    <div class="flex flex-col mb-4 grow gap-1 items-center justify-center sm:flex-row lg:mb-0"
         [class.hidden]="!((menuOpen$ | async) || menuToggle)">
         @if ((currentUser$ | async); as user) {
-        <div class="flex flex-col items-center sm:order-last sm:flex-row lg:ml-auto">
+        <div class="flex flex-col gap-2 items-center sm:order-last sm:flex-row lg:ml-auto">
             <p class="p-3 border-b-1 border-b- border-neutral-500 sm:order-5 sm:border-b-0 sm:border-r-1 lg:p-4 cursor-default">{{user.username}}</p>
-            <app-button [classes]="'hover:bg-yellow-200'" class="sm:order-last lg:mr-4" (click)="logout()"
+            <app-button [classes]="'hover:bg-red-200'" class="sm:order-last lg:mr-4" (click)="logout()"
                 [routerLink]="['/home']">Logout</app-button>
         </div>
         }
         @else {
-        <app-button [classes]="'hover:bg-yellow-200'" class="sm:order-last lg:ml-auto lg:mr-4"
+        <app-button [classes]="'hover:bg-green-200'" class="sm:order-last lg:ml-auto lg:mr-4"
             [routerLink]="['/login']">Login</app-button>
         }
 
-        <app-button [classes]="'hover:bg-red-200'" [routerLink]="['/home']">Inicio</app-button>
+        <app-button [classes]="'hover:bg-amber-200'" [routerLink]="['/home']">Inicio</app-button>
 
-        <app-button [classes]="'hover:bg-orange-200'" [routerLink]="['/products']">Productos</app-button>
+        <app-button [classes]="'hover:bg-sky-200'" [routerLink]="['/products']">Productos</app-button>
 
-        <app-button [classes]="'hover:bg-amber-200'" [routerLink]="['/contacts']">Contactos</app-button>
+        <app-button [classes]="'hover:bg-fuchsia-200'" [routerLink]="['/contacts']">Contactos</app-button>
         <!--Barra de búsqueda -->
         <div class="relative order-first sm:order-4">
             <input type="text" placeholder="Buscar" [formControl]="searchBar"

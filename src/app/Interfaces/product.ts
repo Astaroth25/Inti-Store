@@ -6,5 +6,6 @@ export interface ProductI {
   description: string;
   link: string;
   rate: number;
+  highlight?: boolean;
   stock: number;
 }

@@ -15,11 +15,12 @@ import { CommonModule } from '@angular/common';
 })
 export class HomeComponent{
   private productService = inject(ProductService);
-  public products$!: Observable<ProductI[]>;
+  public productsHighlight$!: Observable<ProductI[]>;
   
     constructor(){
-      this.productService.products$.subscribe();
-      this.products$ = this.productService.products$;
+      this.productService.getHighlights().subscribe();
+      this.productService.productsHighlight$.subscribe();
+      this.productsHighlight$ = this.productService.productsHighlight$;
     }
 
 }

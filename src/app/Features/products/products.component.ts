@@ -18,6 +18,7 @@ export class ProductsComponent {
   public products$!: Observable<ProductI[]>;
 
   constructor(){
+    this.productService.getProducts().subscribe();
     this.productService.products$.subscribe();
     this.products$ = this.productService.products$;
   }

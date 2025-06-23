@@ -4,7 +4,7 @@
         <p class="font-light text-lg">Inicia sesión y encuentra eso que te ilumina.</p>
     </div>
     <div
-        class="flex flex-col text-center rounded-3xl text-black bg-white p-10 m-10 items-center w-auto max-w-90 relative -z-0">
+        class="flex flex-col text-center rounded-3xl shadow-lg text-black bg-white p-10 m-10 items-center w-auto max-w-90 relative -z-0">
 
         <form [formGroup]="loginForm" class="flex flex-col w-full gap-2">
             <input type="text" placeholder="Username" name="username" id="username" class="border-1 rounded-full px-4 h-10 placeholder-neutral-500 border-neutral-500"
@@ -12,7 +12,7 @@
             <input type="password" placeholder="Password" name="password" id="password" class="border-1 rounded-full px-4 h-10 placeholder-neutral-500 border-neutral-500"
                 formControlName="password">
             <br>
-            <app-button [classes]="'bg-sky-200 w-20 m-auto text-black'" (click)="login()">Enviar</app-button>
+            <app-button [classes]="'bg-sky-200 w-20 m-auto text-black'" (click)="login()">Iniciar</app-button>
         </form>
         <p class="absolute text-base font-light -bottom-8">No tienes una cuenta? <a class="hover:underline cursor-pointer font-normal" [routerLink]="['/register']">Regístrate</a></p>
     </div>

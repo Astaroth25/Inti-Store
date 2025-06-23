@@ -12,7 +12,9 @@ export class ProductService {
   private http = inject(HttpClient)
 
   private _products = new BehaviorSubject<ProductI[]>([]);
+  private _productsHighlight = new BehaviorSubject<ProductI[]>([]);
   public products$ = this._products.asObservable();
+  public productsHighlight$ = this._productsHighlight.asObservable();
 
   getProducts(searchParams: SearchParams = {}): Observable<ProductI[]> {
     let params = new HttpParams();
@@ -23,7 +25,7 @@ export class ProductService {
       params = params.append('name', searchParams.name);
     }
     return this.http.get<ProductI[]>(this.baseURL, { params: params }).pipe(
-      tap(data => this._products.next(data)), 
+      tap(products => this._products.next(products)), 
     catchError(error => {
       console.error('Error Obtaining Products: ', error);
       this._products.next([]);
@@ -33,5 +35,19 @@ export class ProductService {
 
   getOneProduct(id: string): Observable<ProductI> {
     return this.http.get<ProductI>(this.baseURL + `${id}`);
+  }
+
+  getHighlights():Observable<ProductI[]>{
+    return this.http.get<ProductI[]>(this.baseURL + 'highlight').pipe(
+      tap(products => {
+        this._productsHighlight.next(products);
+        console.log(this.productsHighlight$);
+      }),
+      catchError(error => {
+        console.error('Error Obtaining Products: ', error);
+      this._productsHighlight.next([]);
+      return of ([]);
+      })
+    );
   }
 }
