@@ -1,23 +1,28 @@
-<app-banner/>
-<div class="flex flex-col items-center bg-violet-200 gap-4 my-4 py-2">
-    <h1 class="text-center text-2xl font-bold mx-4 ">Descubre lo que tenemos para ti</h1>
-    <div class="flex items-center justify-center gap-2 flex-wrap mb-4">
-        @if ((productsHighlight$ | async); as products) {
-        @if (products.length > 0) {
-        @for (product of products.slice(0,4); track product.id) {
-        <app-product-item [routerLink]="['/products', product.id]">
-            <div image><img src="{{product.link}}" alt="{{product.name}}" class="w-full h-45 object-fill">
-            </div>
-            <div title>
-                <p class="truncate">{{product.name}}</p>
-            </div>
-            <div price>{{product.price}}</div>
-        </app-product-item>
-        }
-        }
-        @else {
-        <p>No hay productos destacados para mostrar. </p>
-        }
-        }
+<div class="relative">
+    <app-banner />
+    <div class="flex flex-col items-center bg-violet-200 gap-4 my-4 py-2">
+        <h1 class="text-center text-2xl font-bold mx-4 ">Descubre lo que tenemos para ti</h1>
+        <div class="flex items-center justify-center gap-2 flex-wrap mb-4">
+            @if ((productsHighlight$ | async); as products) {
+            @if (products.length > 0) {
+            @for (product of products.slice(0,4); track product.id) {
+            <app-product-item [routerLink]="['/products', product.id]">
+                <div image><img src="{{product.link}}" alt="{{product.name}}" class="w-full h-45 object-fill">
+                </div>
+                <div title>
+                    <p class="truncate">{{product.name}}</p>
+                </div>
+                <div price>{{product.price}}</div>
+            </app-product-item>
+            }
+            }
+            @else {
+            <p>No hay productos destacados para mostrar. </p>
+            }
+            }
+        </div>
+
+        <app-cart-icon (openCart)="isCartModalOpen=true" [hiddenIcon]="isCartModalOpen" />
+        <app-cart-modal (closeModal)="isCartModalOpen=false" [isOpen]="isCartModalOpen" [displayMode]="'modal'"/>
     </div>
 </div>

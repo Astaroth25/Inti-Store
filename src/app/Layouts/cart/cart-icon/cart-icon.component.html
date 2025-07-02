@@ -1,0 +1,12 @@
+@if (!hiddenIcon()) {
+<div class="flex fixed justify-center items-center right-1/12 bottom-1/12 w-14 aspect-square cursor-pointer bg-white rounded-full lg:w-16"
+    (click)="openCart.emit()">
+    <svg fill="#000000" class="w-8 h-8 lg:w-10 lg:h-10">
+        <use xlink:href="Assets/sprite.svg#shoppingCart"></use>
+    </svg>
+    <div
+        class="flex absolute justify-center items-center top-1/6 right-1/5 bg-red-500 rounded-full w-4 aspect-square border-1 border-black lg:w-5">
+        <p class="text-xs">{{ (cartItem$ | async)?.length || 0 }}</p>
+    </div>
+</div>
+}

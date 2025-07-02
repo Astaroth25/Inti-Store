@@ -1,16 +1,17 @@
-<div class="flex flex-col min-h-screen overflow-hidden">
+<div class="relative flex flex-col min-h-screen">
     <!-- Componente de barra de navegación -->
     <header class="sticky top-0 z-10">
         <app-navbar></app-navbar>
     </header>
 
     <!-- Directiva para single-page apps-->
-    <main class="flex-grow">
-        <router-outlet/>
+    <main class="flex-grow overflow-hidden">
+        <router-outlet />
     </main>
 
     <!-- Componente de pie de página -->
     <footer>
         <app-footer></app-footer>
     </footer>
+
 </div>

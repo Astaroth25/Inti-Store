@@ -1,0 +1,20 @@
+<div class="flex flex-col items-center gap-4">
+    <div class="flex items-center gap-4">
+        <p>Cantidad: </p>
+        <div class="flex items-center bg-neutral-50 rounded-full p-2">
+            <button (click)="add()">
+                <svg fill="000000" class="aspect-square w-6 mx-2">
+                    <use xlink:href="Assets/sprite.svg#add"></use>
+                </svg>
+            </button>
+
+            <p class="text-xl px-2 bg-neutral-200">{{count()}}</p>
+
+            <button (click)="remove()">
+                <svg fill="000000" class="aspect-square w-6 mx-2">
+                    <use xlink:href="Assets/sprite.svg#remove"></use>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>

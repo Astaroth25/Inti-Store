@@ -32,7 +32,6 @@ export class NavbarComponent implements OnInit {
     .pipe(map(state => state.matches));
 
   ngOnInit(): void {
-    this.authService.currentUser$.subscribe();
     this.currentUser$ = this.authService.currentUser$;
   }
 

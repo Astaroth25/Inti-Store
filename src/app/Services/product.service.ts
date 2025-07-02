@@ -41,7 +41,6 @@ export class ProductService {
     return this.http.get<ProductI[]>(this.baseURL + 'highlight').pipe(
       tap(products => {
         this._productsHighlight.next(products);
-        console.log(this.productsHighlight$);
       }),
       catchError(error => {
         console.error('Error Obtaining Products: ', error);
