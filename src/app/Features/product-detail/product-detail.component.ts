@@ -20,7 +20,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 export class ProductDetailComponent implements OnInit {
   count: number = 1;
   productId!: string;
-  product?: ProductI;
+  item?: ProductI;
   isCartModalOpen: boolean = false;
   displayMode: 'modal' | 'static' = 'modal';
   private breakpointObserver = inject(BreakpointObserver);
@@ -35,7 +35,7 @@ export class ProductDetailComponent implements OnInit {
       this.productId = String(param.get('id'));
       this.productService.getOneProduct(this.productId).subscribe(product => {
         if (Array.isArray(product) && product.length > 0) {
-          this.product = product[0];
+          this.item = product[0];
         }
       });
     });
@@ -53,7 +53,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCart() {
-    const product = this.product!;
+    const product = this.item!;
     const count = this.count;
     this.shoppingCartService.addProduct({ product, count });
   }
